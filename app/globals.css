@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent-50: #eff6ff;
+  --accent-100: #dbeafe;
+  --accent-200: #bfdbfe;
+  --accent-300: #93c5fd;
+  --accent-400: #60a5fa;
+  --accent-500: #3b82f6;
+  --accent-600: #2563eb;
+  --accent-700: #1d4ed8;
+  --accent-800: #1e40af;
+  --accent-900: #1e3a8a;
+  --font-mono: "Courier New", Courier, monospace;
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+}
+
+html.dark body {
+  @apply bg-slate-950 text-slate-100;
+}
+
+/* Millimetre-accurate check canvas. 1mm == 1mm regardless of screen
+   zoom because it is only ever rendered at 96dpi CSS "mm" units, which
+   is exactly what @page + print uses too, so what you calibrate on
+   screen (scaled down for viewing) matches what comes out of the
+   printer. */
+.check-canvas {
+  position: relative;
+  background: white;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+html.dark .check-canvas {
+  background: #f8fafc;
+}
+
+.check-field {
+  position: absolute;
+  white-space: pre;
+  line-height: 1;
+  color: #0f172a;
+  font-family: var(--font-mono);
+}
+
+.check-field-wrap {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.digit-box {
+  position: absolute;
+  display: inline-block;
+  line-height: 1;
+  color: #0f172a;
+  font-family: var(--font-mono);
+}
+
+.no-print {
+  display: block;
+}
+
+@media print {
+  html,
+  body {
+    background: white !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-area {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .print-wrapper {
+    display: block !important;
+    position: static !important;
+  }
+}
